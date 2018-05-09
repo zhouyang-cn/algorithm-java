@@ -8,21 +8,35 @@ package com.zy.string;
 public class Problem1 {
     public static void main(String[] args) {
         Solution solution = new Solution();
-        String str = "hello world";
+        String str = "HelloWorld";
         String reverseString = solution.reverseString(str);
         System.out.println(reverseString);
     }
 }
 
 class Solution {
-    public String reverseString(String s) {
-        if (s == null) {
-            return "";
+    public String reverseString(String str) {
+        if (str == null || str.length() == 0) {
+            return str;
         }
-        StringBuilder builder = new StringBuilder();
-        for (int i = s.length() - 1; i >= 0; i--) {
-            builder.append(s.charAt(i));
+        int length = str.length();
+        char[] array = str.toCharArray();
+        for (int i = 0; i < length; i++) {
+            array[i] = str.charAt(length - 1 - i);
         }
-        return builder.toString();
+        return new String(array);
+    }
+
+    public String reverseString2(String str) {
+        if (str == null || str.length() == 0) {
+            return str;
+        }
+        int length = str.length();
+        char[] array = str.toCharArray();
+        for (int i = 0; i < length / 2; i++) {
+            array[i] = str.charAt(length - 1 - i);
+            array[length - 1 - i] = str.charAt(i);
+        }
+        return new String(array);
     }
 }
